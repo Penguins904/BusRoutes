@@ -1,9 +1,8 @@
 import math
 from dataclasses import dataclass
-from re import X
 from typing import List
 import requests
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 BASE_URL = "https://appalcart.ridesystems.net/Services/JSONPRelay.svc/"
 API_KEY = "8882812681"
