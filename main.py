@@ -1,8 +1,10 @@
-import math
 from dataclasses import dataclass
 from typing import List
-import requests
+
+import math
 from datetime import datetime, timedelta
+import requests
+import asyncio
 
 BASE_URL = "https://appalcart.ridesystems.net/Services/JSONPRelay.svc/"
 API_KEY = "8882812681"
@@ -74,26 +76,30 @@ def get_routeid(name: str) -> int:
         if route_dict["Description"] == name:
             return int(route_dict["RouteID"])
 
-def get_stops(route_id: int) -> List[Stop]:
+async def get_stops(route_id: int) -> List[Stop]:
     stops = []
     for stop in make_request("GetStops", {"routeId": route_id}):
         stops.append(Stop(stop["Description"], int(stop["RouteStopID"]), route_id, stop["Latitude"], stop["Longitude"]))
 
     return stops
 
-def get_bus(route_id):
+async def get_buses(route_id) -> List[Bus]:
     buses = []
     for bus in make_request("GetMapVehiclePoints", {"routeId": route_id}):
         buses.append(Bus(bus["VehicleID"], route_id, bus["Latitude"], bus["Longitude"]))
     return buses
 
-def get_route(name: str) -> Route:
+async def get_route(name: str) -> Route:
     route_id = get_routeid(name)
-    stops = get_stops(route_id)
-    buses = get_bus(route_id)
+    #stops = get_stops(route_id)
+    stop_task = asyncio.create_task(get_stops(route_id))
+    #buses = get_bus(route_id)
+    bus_task = asyncio.create_task(get_bus(route_id))
+    stops = await stop_task
+    buses = await bus_task
     return Route(name, route_id, stops, buses)
 
-route = get_route("Green")
+route = asyncio.run(get_route("Green"))
 
 stop_name = "Dan'l Boone Inn"
 stop = route.get_stop(stop_name)
