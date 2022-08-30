@@ -1,4 +1,4 @@
-1. Fix Route.name and Route.id
-2. Remove console.logs
+1. fix routeId property being undefined in stops and buses
+2. fix Cords.distanceFrom
 3. Send SMS
 4. UX

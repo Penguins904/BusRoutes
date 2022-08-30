@@ -1,21 +1,12 @@
 class Bus {
-    setBusId(id) {
-        this.busId = id;
-    }
 
-    getBusId() {
-        return this.busId;
-    }
-
-    setRouteId(id) {
-        this.routeId = id;
-    }
-
-    getRouteId() {
-        return this.routeId;
-    }
-
-    setCords(lat, lon) {
+    constructor(busId, routeId, lat, lon) {
+        this.busId = busId;
+        this.routeId = routeId;
         this.cords = new Cords(lat, lon);
+    }
+
+    update() {
+        
     }
 }

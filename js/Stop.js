@@ -1,30 +1,17 @@
 class Stop {
-    setName(name) {
+    constructor(name, routeId, stopId, lat, lon) {
         this.name = name;
-    }
-
-    getName() {
-        return this.name;
-    }
-
-    setStopId(id) {
-        this.stopId = id;
-    }
-
-    getStopId() {
-        return this.stopId;
-    }
-
-    setRouteId(id) {
-        this.routeId = id;
-    }
-
-    getRouteId() {
-        return this.routeId;
-    }
-
-    setCords(lat, lon) {
+        this.routeId = routeId;
+        this.stopId = stopId;
         this.cords = new Cords(lat, lon);
+    }
+
+    get lat() {
+        return this.cords.lat;
+    }
+
+    get lon() {
+        return this.cords.lon;
     }
 
     getNextStopTime(isEstimate = true){
