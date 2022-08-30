@@ -1,4 +1,4 @@
-1. Fix setStops
-2. Text
-3. UX
-4. Work on Async?
+1. Fix Route.name and Route.id
+2. Remove console.logs
+3. Send SMS
+4. UX
