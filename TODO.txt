@@ -1,0 +1,4 @@
+1. Fix setStops
+2. Text
+3. UX
+4. Work on Async?
