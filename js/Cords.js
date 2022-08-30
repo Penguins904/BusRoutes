@@ -6,7 +6,9 @@ class Cords {
     getLatAndLon() {
         return [this.lat, this.lon];
     }
-    distanceFrom(lat, lon) {
+    distanceFrom(cords) {
+        const lat = cords.lat;
+        const lon = cords.lon;
         const R = 6378.137; // Radius of earth in KM
         let dLat = lat * Math.PI / 180 - this.lat * Math.PI / 180;
         let dLon = lon * Math.PI / 180 - this.lon * Math.PI / 180;
