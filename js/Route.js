@@ -38,4 +38,17 @@ class Route {
             }
         });
     }
+
+    toString() {
+        let output = `${this.name} route: RouteId = ${this.id},\n`;
+        output += "Buses:\n";
+        this.buses.forEach(bus => {
+            output +=  "\t" + bus + "\n";
+        });
+        output += "Stops:\n";
+        this.stops.forEach(stop => {
+            output += "\t" + stop + "\n";
+        });
+        return output;
+    }
 }

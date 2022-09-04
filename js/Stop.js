@@ -20,4 +20,8 @@ class Stop {
         times = data.Times.map(timeObj => parseInt(timeObj[timeType].split("(")[1].split(")")[0])); //converts /Date(1234)/ to 1234
         return new Date(Math.min(...times));
     }
+
+    toString() {
+        return `${this.name} Stop, Id is ${this.stopId}, belongs to Route ${this.routeId} Cords are ${this.cords}`;
+    }
 }

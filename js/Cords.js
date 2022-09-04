@@ -17,4 +17,8 @@ class Cords {
         let d = R * c; //km
         return d * 1000 * 3.28084; // feet
     }
+
+    toString() {
+        return `${this.lat}, ${this.lon}`;
+    }
 }

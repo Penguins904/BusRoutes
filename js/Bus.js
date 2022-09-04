@@ -6,7 +6,11 @@ class Bus {
         this.cords = new Cords(lat, lon);
     }
 
-    update() {
-        
+    async update() {
+
+    }
+
+    toString() {
+        return `{Bus number is ${this.busId}, belongs to route ${this.routeId}, cordinates are ${this.cords}`;
     }
 }
