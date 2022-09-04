@@ -20,7 +20,36 @@ async function buildRoute(name, id) {
   return routeBuilder.build();
 }
 
-(async() => {
-  route = await buildRoute("Blue", 1);
-  alert(route);
-})();
+function showNotification(name) {
+  buildRoute(name).then(route => {
+    console.log(route);
+    console.log(Notification.permission);
+    const n = new Notification(route.name, {body: route});
+  });
+  
+}
+
+window.addEventListener("load", () => {
+  if(Notification.permission === "granted") {
+
+  } else if(Notification && Notification.permission !== "denied") {
+    let notfButton = document.createElement("button");
+    notfButton.appendChild(document.createTextNode("Notify Me"));
+    document.body.insertBefore(notfButton, document.body.lastChild);
+    notfButton.addEventListener("click", () => {
+      Notification.requestPermission().then((status) => {
+        console.log(status);
+        const n = new Notification("test");
+      });
+      
+    });
+  }
+
+  
+
+  document.getElementById("button").addEventListener("click", () => {
+    let name = document.getElementById("input").value;
+    showNotification(name);
+  });
+
+});
