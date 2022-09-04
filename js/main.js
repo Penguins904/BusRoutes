@@ -19,3 +19,8 @@ async function buildRoute(name, id) {
   await Promise.all([busPromise, stopPromise]);
   return routeBuilder.build();
 }
+
+(async() => {
+  route = await buildRoute("Blue", 1);
+  alert(route);
+})();
